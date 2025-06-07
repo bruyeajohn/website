@@ -26,8 +26,6 @@
             padding: 0 20px;
         }
 
-        /* Remove header styles - no longer needed */
-
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -188,31 +186,26 @@
         .heart-container {
             margin: 50px 0;
             position: relative;
-            height: 100px;
+            height: 200px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
         
-        .heart-placeholder {
-            width: 100px;
-            height: 100px;
-            background-color: transparent;
-            background-image: url('your-image-here.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            border: 2px dashed #BCA4E3;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #BCA4E3;
-            font-size: 12px;
-            text-align: center;
+        .heart-image {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #BCA4E3;
+            box-shadow: 0 8px 20px rgba(188, 164, 227, 0.3);
+            transition: transform 0.3s ease;
+            animation: heartbeat 2s ease-in-out infinite;
         }
         
-        /* Remove countdown section styles */
+        .heart-image:hover {
+            transform: scale(1.05);
+        }
         
         /* Footer */
         footer {
@@ -239,11 +232,11 @@
         }
         
         @keyframes heartbeat {
-            0% { transform: rotate(45deg) scale(1); }
-            14% { transform: rotate(45deg) scale(1.1); }
-            28% { transform: rotate(45deg) scale(1); }
-            42% { transform: rotate(45deg) scale(1.1); }
-            70% { transform: rotate(45deg) scale(1); }
+            0% { transform: scale(1); }
+            14% { transform: scale(1.02); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.02); }
+            70% { transform: scale(1); }
         }
         
         /* Mobile-first responsive design */
@@ -297,10 +290,13 @@
                 margin-bottom: 30px;
             }
             
-            .heart-placeholder {
-                width: 80px;
-                height: 80px;
-                font-size: 10px;
+            .heart-container {
+                height: 150px;
+            }
+            
+            .heart-image {
+                width: 60px;
+                height: 60px;
             }
             
             /* iOS Safari specific fixes */
@@ -332,14 +328,17 @@
             .message p {
                 font-size: 0.95rem;
             }
+            
+            .heart-image {
+                width: 50px;
+                height: 50px;
+            }
         }
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header removed -->
-
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="falling-container" id="falling-items"></div>
@@ -401,14 +400,12 @@
                 <p>On this special day, I want to tell you how much you mean to me. Your smile brightens my darkest days, and your love gives me strength I never knew I had. You're not just my girlfriend, but my best friend, my confidant, and my biggest support.</p>
                 <p>Thank you for being the amazing person that you are. I cherish every moment we spend together and look forward to creating many more beautiful memories in the years to come.</p>
                 <div class="heart-container">
-                   <img src="twincross_small.jpg" alt="Special Memory" class="heart-image">
+                    <img src="twincross_small.jpg" alt="Special Memory" class="heart-image">
                 </div>
                 <p>I love you more than words can express. Happy Birthday!</p>
             </div>
         </div>
     </section>
-
-    <!-- Countdown section removed -->
 
     <!-- Footer -->
     <footer>
@@ -418,7 +415,7 @@
     </footer>
 
     <script>
-        // Create falling items with seamless animation (no initial delay)
+        // Create falling items with seamless animation
         const fallingContainer = document.getElementById('falling-items');
         const items = ['🍓', '🍣', '🧋', '🌸'];
         const itemClasses = ['strawberry', 'sushi', 'boba', 'flower'];
@@ -429,13 +426,10 @@
             item.classList.add('falling-item', itemClasses[randomIndex]);
             item.textContent = items[randomIndex];
             item.style.left = Math.random() * 100 + '%';
-            // Spread items throughout the animation cycle for seamless effect
             item.style.animationDelay = '-' + (Math.random() * 8) + 's';
             item.style.animationDuration = Math.random() * 4 + 6 + 's';
             fallingContainer.appendChild(item);
         }
-        
-        // Remove all countdown and navbar related JavaScript
         
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
