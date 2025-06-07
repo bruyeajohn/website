@@ -84,14 +84,14 @@
         
         /* Gallery Section */
         .gallery {
-            padding: 40px 0 80px 0;
+            padding: 80px 0 120px 0;
             background-color: #fff;
         }
         
         .section-title {
             font-size: 2.5rem;
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
             color: #333;
             position: relative;
         }
@@ -250,6 +250,26 @@
             opacity: 0.8;
         }
         
+        /* Force desktop heart emoji on all platforms */
+        .desktop-heart {
+            font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            -webkit-font-feature-settings: "liga";
+            font-feature-settings: "liga";
+        }
+        
+        /* iOS specific heart emoji override */
+        @supports (-webkit-touch-callout: none) {
+            .desktop-heart {
+                font-family: 'Segoe UI Emoji', 'Noto Color Emoji', system-ui, sans-serif !important;
+                -webkit-text-stroke: 0.5px #ff0000;
+                color: #ff0000;
+                text-shadow: 0 0 0 #ff0000;
+            }
+        }
+        
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(30px); }
@@ -327,7 +347,7 @@
             }
             
             .gallery {
-                padding: 20px 0 60px 0;
+                padding: 60px 0 100px 0;
             }
             
             .gallery-grid {
@@ -456,78 +476,102 @@
                     
                     <div class="slides active">
                         <div class="slide-item">
-                            <img src="/api/placeholder/800/600" alt="Memory 1">
+                            <img src="1.jpg" alt="Memory 1">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="/api/placeholder/800/600" alt="Memory 2">
+                            <img src="2.jpg" alt="Memory 2">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="/api/placeholder/800/600" alt="Memory 3">
+                            <img src="3.jpg" alt="Memory 3">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="/api/placeholder/800/600" alt="Memory 4">
+                            <img src="4.jpg" alt="Memory 4">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="/api/placeholder/800/600" alt="Memory 5">
+                            <img src="5.jpg" alt="Memory 5">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="/api/placeholder/800/600" alt="Memory 6">
+                            <img src="6.jpg" alt="Memory 6">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="/api/placeholder/800/600" alt="Memory 7">
+                            <img src="7.jpg" alt="Memory 7">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="/api/placeholder/800/600" alt="Memory 8">
+                            <img src="8.jpg" alt="Memory 8">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="/api/placeholder/800/600" alt="Memory 9">
+                            <img src="9.jpg" alt="Memory 9">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="/api/placeholder/800/600" alt="Memory 10">
+                            <img src="10.jpg" alt="Memory 10">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="/api/placeholder/800/600" alt="Memory 11">
+                            <img src="11.jpg" alt="Memory 11">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="/api/placeholder/800/600" alt="Memory 12">
+                            <img src="12.jpg" alt="Memory 12">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="13.jpg" alt="Memory 13">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="14.jpg" alt="Memory 14">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="15.jpg" alt="Memory 15">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="16.jpg" alt="Memory 16">
                         </div>
                     </div>
                 </div>
                 <div class="slide-counter">
-                    <span id="current-slide">1</span> / 12
+                    <span id="current-slide">1</span> / 16
                 </div>
             </div>
         </div>
@@ -540,7 +584,7 @@
                 <p>On this special day, I want to tell you how much you mean to me. Your smile brightens my darkest days, and your love gives me strength I never knew I had. You're not just my girlfriend, but my best friend, my confidant, and my biggest support.</p>
                 <p>Thank you for being the amazing person that you are. I cherish every moment we spend together and look forward to creating many more beautiful memories in the years to come.</p>
                 <div class="heart-container">
-                    <img src="twincross_small.jpg" alt="Special Memory" class="heart-image">
+                    <img src="twincross.jpg" alt="Special Memory" class="heart-image">
                 </div>
                 <p>I love you more than words can express. Happy Birthday!</p>
             </div>
@@ -550,14 +594,14 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>Made with ❤️ from John</p>
+            <p>Made with <span class="desktop-heart">❤️</span> from John</p>
         </div>
     </footer>
 
     <script>
         // Slideshow functionality
         let currentSlide = 1;
-        const totalSlides = 12;
+        const totalSlides = 16;
         
         function showSlide(n) {
             const slides = document.querySelectorAll('.slides');
