@@ -252,21 +252,41 @@
         
         /* Force desktop heart emoji on all platforms */
         .desktop-heart {
-            font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
+            font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Twemoji Mozilla', sans-serif !important;
             font-style: normal;
             font-variant: normal;
-            text-rendering: auto;
-            -webkit-font-feature-settings: "liga";
-            font-feature-settings: "liga";
+            text-rendering: optimizeLegibility;
+            -webkit-font-feature-settings: "liga" off;
+            font-feature-settings: "liga" off;
         }
         
-        /* iOS specific heart emoji override */
+        /* iOS specific heart emoji override - multiple approaches */
         @supports (-webkit-touch-callout: none) {
             .desktop-heart {
-                font-family: 'Segoe UI Emoji', 'Noto Color Emoji', system-ui, sans-serif !important;
-                -webkit-text-stroke: 0.5px #ff0000;
-                color: #ff0000;
-                text-shadow: 0 0 0 #ff0000;
+                font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Twemoji Mozilla', monospace !important;
+                -webkit-text-stroke: 0px;
+                color: #e74c3c;
+                text-shadow: none;
+                font-size: 1em;
+                display: inline-block;
+                transform: scale(1.1);
+            }
+        }
+        
+        /* Alternative heart using Unicode variation selector */
+        .desktop-heart::before {
+            content: "❤︎";
+            font-family: 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+            color: #e74c3c;
+        }
+        
+        /* Hide original emoji on iOS */
+        @supports (-webkit-touch-callout: none) {
+            .desktop-heart {
+                font-size: 0;
+            }
+            .desktop-heart::before {
+                font-size: 0.9rem;
             }
         }
         
@@ -476,97 +496,97 @@
                     
                     <div class="slides active">
                         <div class="slide-item">
-                            <img src="1.jpg" alt="Memory 1">
+                            <img src="pics/1.jpg" alt="Memory 1">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="2.jpg" alt="Memory 2">
+                            <img src="pics/2.jpg" alt="Memory 2">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="3.jpg" alt="Memory 3">
+                            <img src="pics/3.jpg" alt="Memory 3">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="4.jpg" alt="Memory 4">
+                            <img src="pics/4.jpg" alt="Memory 4">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="5.jpg" alt="Memory 5">
+                            <img src="pics/5.jpg" alt="Memory 5">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="6.jpg" alt="Memory 6">
+                            <img src="pics/6.jpg" alt="Memory 6">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="7.jpg" alt="Memory 7">
+                            <img src="pics/7.jpg" alt="Memory 7">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="8.jpg" alt="Memory 8">
+                            <img src="pics/8.jpg" alt="Memory 8">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="9.jpg" alt="Memory 9">
+                            <img src="pics/9.jpg" alt="Memory 9">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="10.jpg" alt="Memory 10">
+                            <img src="pics/10.jpg" alt="Memory 10">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="11.jpg" alt="Memory 11">
+                            <img src="pics/11.jpg" alt="Memory 11">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="12.jpg" alt="Memory 12">
+                            <img src="pics/12.jpg" alt="Memory 12">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="13.jpg" alt="Memory 13">
+                            <img src="pics/13.jpg" alt="Memory 13">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="14.jpg" alt="Memory 14">
+                            <img src="pics/14.jpg" alt="Memory 14">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="15.jpg" alt="Memory 15">
+                            <img src="pics/15.jpg" alt="Memory 15">
                         </div>
                     </div>
                     
                     <div class="slides">
                         <div class="slide-item">
-                            <img src="16.jpg" alt="Memory 16">
+                            <img src="pics/16.jpg" alt="Memory 16">
                         </div>
                     </div>
                 </div>
@@ -584,7 +604,7 @@
                 <p>On this special day, I want to tell you how much you mean to me. Your smile brightens my darkest days, and your love gives me strength I never knew I had. You're not just my girlfriend, but my best friend, my confidant, and my biggest support.</p>
                 <p>Thank you for being the amazing person that you are. I cherish every moment we spend together and look forward to creating many more beautiful memories in the years to come.</p>
                 <div class="heart-container">
-                    <img src="twincross.jpg" alt="Special Memory" class="heart-image">
+                    <img src="pics/twincross.jpg" alt="Special Memory" class="heart-image">
                 </div>
                 <p>I love you more than words can express. Happy Birthday!</p>
             </div>
