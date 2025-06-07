@@ -41,8 +41,9 @@
         .hero-content {
             text-align: center;
             z-index: 1;
-            animation: fadeIn 1.5s ease;
-            transform: translateY(-50px);
+            animation: fadeInUp 1.5s ease forwards;
+            opacity: 0;
+            transform: translateY(50px);
         }
         
         .hero h1 {
@@ -91,7 +92,7 @@
         .section-title {
             font-size: 2.5rem;
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 20px;
             color: #333;
             position: relative;
         }
@@ -115,6 +116,7 @@
         }
         
         .slideshow-container {
+            margin-top: 40px;
             position: relative;
             width: 100%;
         }
@@ -137,7 +139,6 @@
             position: relative;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
-            cursor: pointer;
         }
         
         .slide-item:hover {
@@ -197,110 +198,6 @@
             font-size: 16px;
             font-weight: 500;
         }
-
-        /* Fullscreen Modal for iOS */
-        .fullscreen-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .fullscreen-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .fullscreen-content {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .fullscreen-image {
-            max-width: 95%;
-            max-height: 85%;
-            object-fit: contain;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .fullscreen-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 1001;
-        }
-
-        .fullscreen-close:hover {
-            background: rgba(255, 255, 255, 1);
-            transform: scale(1.1);
-        }
-
-        .fullscreen-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 1001;
-        }
-
-        .fullscreen-nav:hover {
-            background: rgba(255, 255, 255, 1);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .fullscreen-prev {
-            left: 20px;
-        }
-
-        .fullscreen-next {
-            right: 20px;
-        }
-
-        .fullscreen-counter {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            font-size: 16px;
-            font-weight: 500;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
         
         /* Message Section */
         .message {
@@ -355,9 +252,15 @@
         }
         
         /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(50px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
         
         @keyframes item-fall {
@@ -373,7 +276,7 @@
             }
             
             .slide-item {
-                height: 500px;
+                height: 700px;
                 border-radius: 15px;
             }
             
@@ -383,11 +286,6 @@
             
             .next {
                 right: -60px;
-            }
-
-            /* Hide fullscreen modal controls on desktop */
-            .fullscreen-modal {
-                display: none !important;
             }
         }
         
@@ -454,6 +352,11 @@
                 padding: 0;
             }
             
+            /* Show navigation buttons only on desktop */
+            .prev, .next {
+                display: flex;
+            }
+            
             .slide-item {
                 height: 70vh;
                 min-height: 350px;
@@ -462,7 +365,7 @@
                 margin-left: -15px;
             }
             
-            /* Hide regular navigation on mobile - use fullscreen instead */
+            /* Hide navigation buttons on mobile - swipe only */
             .prev, .next {
                 display: none;
             }
@@ -503,7 +406,8 @@
             }
 
             footer {
-                padding: 50px 0 0 0;
+                padding: 50px 0;
+                min-height: 200px;
                 margin: 0;
                 background-color: #333;
             }
@@ -512,7 +416,7 @@
             footer::after {
                 content: '';
                 display: block;
-                height: env(safe-area-inset-bottom, 20px);
+                height: env(safe-area-inset-bottom, 80px);
                 background-color: #333;
             }
         }
@@ -588,97 +492,97 @@
                     <button class="slide-nav next" onclick="changeSlide(1)">❯</button>
                     
                     <div class="slides active">
-                        <div class="slide-item" onclick="openFullscreen(1)">
+                        <div class="slide-item">
                             <img src="pics/1.jpg" alt="Memory 1">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item" onclick="openFullscreen(2)">
+                        <div class="slide-item">
                             <img src="pics/2.jpg" alt="Memory 2">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item" onclick="openFullscreen(3)">
+                        <div class="slide-item">
                             <img src="pics/3.jpg" alt="Memory 3">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item" onclick="openFullscreen(4)">
+                        <div class="slide-item">
                             <img src="pics/4.jpg" alt="Memory 4">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item" onclick="openFullscreen(5)">
+                        <div class="slide-item">
                             <img src="pics/5.jpg" alt="Memory 5">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item" onclick="openFullscreen(6)">
+                        <div class="slide-item">
                             <img src="pics/6.jpg" alt="Memory 6">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item" onclick="openFullscreen(7)">
+                        <div class="slide-item">
                             <img src="pics/7.jpg" alt="Memory 7">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item" onclick="openFullscreen(8)">
+                        <div class="slide-item">
                             <img src="pics/8.jpg" alt="Memory 8">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item" onclick="openFullscreen(9)">
+                        <div class="slide-item">
                             <img src="pics/9.jpg" alt="Memory 9">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item" onclick="openFullscreen(10)">
+                        <div class="slide-item">
                             <img src="pics/10.jpg" alt="Memory 10">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item" onclick="openFullscreen(11)">
+                        <div class="slide-item">
                             <img src="pics/11.jpg" alt="Memory 11">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item" onclick="openFullscreen(12)">
+                        <div class="slide-item">
                             <img src="pics/12.jpg" alt="Memory 12">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item" onclick="openFullscreen(13)">
+                        <div class="slide-item">
                             <img src="pics/13.jpg" alt="Memory 13">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item" onclick="openFullscreen(14)">
+                        <div class="slide-item">
                             <img src="pics/14.jpg" alt="Memory 14">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item" onclick="openFullscreen(15)">
+                        <div class="slide-item">
                             <img src="pics/15.jpg" alt="Memory 15">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item" onclick="openFullscreen(16)">
+                        <div class="slide-item">
                             <img src="pics/16.jpg" alt="Memory 16">
                         </div>
                     </div>
@@ -689,19 +593,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Fullscreen Modal for Mobile -->
-    <div class="fullscreen-modal" id="fullscreen-modal">
-        <div class="fullscreen-content">
-            <button class="fullscreen-close" onclick="closeFullscreen()">×</button>
-            <button class="fullscreen-nav fullscreen-prev" onclick="changeFullscreenSlide(-1)">❮</button>
-            <button class="fullscreen-nav fullscreen-next" onclick="changeFullscreenSlide(1)">❯</button>
-            <img class="fullscreen-image" id="fullscreen-image" alt="Fullscreen Memory">
-            <div class="fullscreen-counter">
-                <span id="fullscreen-current">1</span> / 16
-            </div>
-        </div>
-    </div>
 
     <!-- Message Section -->
     <section class="message" id="message">
@@ -727,7 +618,6 @@
     <script>
         // Slideshow functionality
         let currentSlide = 1;
-        let fullscreenSlide = 1;
         const totalSlides = 16;
         
         function showSlide(n) {
@@ -746,57 +636,20 @@
             currentSlide += n;
             showSlide(currentSlide);
         }
-
-        // Fullscreen functionality
-        function openFullscreen(slideNumber) {
-            // Only open fullscreen on mobile devices
-            if (window.innerWidth <= 768) {
-                fullscreenSlide = slideNumber;
-                const modal = document.getElementById('fullscreen-modal');
-                const image = document.getElementById('fullscreen-image');
-                
-                image.src = `pics/${slideNumber}.jpg`;
-                document.getElementById('fullscreen-current').textContent = slideNumber;
-                
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeFullscreen() {
-            const modal = document.getElementById('fullscreen-modal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function changeFullscreenSlide(n) {
-            fullscreenSlide += n;
-            
-            if (fullscreenSlide > totalSlides) fullscreenSlide = 1;
-            if (fullscreenSlide < 1) fullscreenSlide = totalSlides;
-            
-            const image = document.getElementById('fullscreen-image');
-            image.src = `pics/${fullscreenSlide}.jpg`;
-            document.getElementById('fullscreen-current').textContent = fullscreenSlide;
-        }
         
-        // Touch/swipe support for regular slideshow on desktop/tablet
+        // Touch/swipe support for mobile
         let startX = 0;
         let endX = 0;
         
         const slideshowContainer = document.querySelector('.slideshow-container');
         
         slideshowContainer.addEventListener('touchstart', function(e) {
-            if (window.innerWidth > 768) {
-                startX = e.touches[0].clientX;
-            }
+            startX = e.touches[0].clientX;
         });
         
         slideshowContainer.addEventListener('touchend', function(e) {
-            if (window.innerWidth > 768) {
-                endX = e.changedTouches[0].clientX;
-                handleSwipe();
-            }
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
         });
         
         function handleSwipe() {
@@ -805,54 +658,12 @@
             
             if (Math.abs(diff) > swipeThreshold) {
                 if (diff > 0) {
-                    changeSlide(1);
+                    changeSlide(1); // Swipe left - next slide
                 } else {
-                    changeSlide(-1);
+                    changeSlide(-1); // Swipe right - previous slide
                 }
             }
         }
-
-        // Touch/swipe support for fullscreen modal
-        let fullscreenStartX = 0;
-        let fullscreenEndX = 0;
-
-        const fullscreenModal = document.getElementById('fullscreen-modal');
-
-        fullscreenModal.addEventListener('touchstart', function(e) {
-            fullscreenStartX = e.touches[0].clientX;
-        });
-
-        fullscreenModal.addEventListener('touchend', function(e) {
-            fullscreenEndX = e.changedTouches[0].clientX;
-            handleFullscreenSwipe();
-        });
-
-        function handleFullscreenSwipe() {
-            const swipeThreshold = 50;
-            const diff = fullscreenStartX - fullscreenEndX;
-            
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    changeFullscreenSlide(1);
-                } else {
-                    changeFullscreenSlide(-1);
-                }
-            }
-        }
-
-        // Close fullscreen when clicking outside image
-        fullscreenModal.addEventListener('click', function(e) {
-            if (e.target === fullscreenModal) {
-                closeFullscreen();
-            }
-        });
-
-        // Escape key to close fullscreen
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeFullscreen();
-            }
-        });
         
         // Create falling items with seamless animation
         const fallingContainer = document.getElementById('falling-items');
