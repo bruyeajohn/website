@@ -84,14 +84,14 @@
         
         /* Gallery Section */
         .gallery {
-            padding: 80px 0 120px 0;
+            padding: 100px 0 120px 0;
             background-color: #fff;
         }
         
         .section-title {
             font-size: 2.5rem;
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
             color: #333;
             position: relative;
         }
@@ -112,7 +112,6 @@
             width: 100%;
             max-width: 100vw;
             margin: 0 auto;
-            overflow: hidden;
         }
         
         .slideshow-container {
@@ -138,6 +137,7 @@
             position: relative;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
         
         .slide-item:hover {
@@ -197,6 +197,110 @@
             font-size: 16px;
             font-weight: 500;
         }
+
+        /* Fullscreen Modal for iOS */
+        .fullscreen-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .fullscreen-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fullscreen-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fullscreen-image {
+            max-width: 95%;
+            max-height: 85%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .fullscreen-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .fullscreen-close:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+        }
+
+        .fullscreen-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .fullscreen-nav:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .fullscreen-prev {
+            left: 20px;
+        }
+
+        .fullscreen-next {
+            right: 20px;
+        }
+
+        .fullscreen-counter {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
         
         /* Message Section */
         .message {
@@ -250,46 +354,6 @@
             opacity: 0.8;
         }
         
-        /* Force desktop heart emoji on all platforms */
-        .desktop-heart {
-            font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Twemoji Mozilla', sans-serif !important;
-            font-style: normal;
-            font-variant: normal;
-            text-rendering: optimizeLegibility;
-            -webkit-font-feature-settings: "liga" off;
-            font-feature-settings: "liga" off;
-        }
-        
-        /* iOS specific heart emoji override - multiple approaches */
-        @supports (-webkit-touch-callout: none) {
-            .desktop-heart {
-                font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Twemoji Mozilla', monospace !important;
-                -webkit-text-stroke: 0px;
-                color: #e74c3c;
-                text-shadow: none;
-                font-size: 1em;
-                display: inline-block;
-                transform: scale(1.1);
-            }
-        }
-        
-        /* Alternative heart using Unicode variation selector */
-        .desktop-heart::before {
-            content: "❤︎";
-            font-family: 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
-            color: #e74c3c;
-        }
-        
-        /* Hide original emoji on iOS */
-        @supports (-webkit-touch-callout: none) {
-            .desktop-heart {
-                font-size: 0;
-            }
-            .desktop-heart::before {
-                font-size: 0.9rem;
-            }
-        }
-        
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(30px); }
@@ -299,13 +363,6 @@
         @keyframes item-fall {
             0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
             100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-        }
-        
-        /* Force desktop heart emoji on iOS */
-        @supports (-webkit-touch-callout: none) {
-            .falling-item:nth-child(4n) {
-                font-family: 'Apple Color Emoji', sans-serif;
-            }
         }
         
         /* Desktop Styles */
@@ -327,6 +384,11 @@
             .next {
                 right: -60px;
             }
+
+            /* Hide fullscreen modal controls on desktop */
+            .fullscreen-modal {
+                display: none !important;
+            }
         }
         
         /* Tablet Styles */
@@ -342,10 +404,23 @@
             .next {
                 right: 15px;
             }
+
+            .section-title {
+                margin-bottom: 60px;
+            }
         }
         
         /* Mobile and iOS Styles */
         @media (max-width: 768px) {
+            body {
+                padding-bottom: 0;
+                margin-bottom: 0;
+            }
+
+            html {
+                height: 100%;
+            }
+
             .hero {
                 padding: 40px 20px;
                 min-height: 100vh;
@@ -367,7 +442,11 @@
             }
             
             .gallery {
-                padding: 60px 0 100px 0;
+                padding: 80px 0 100px 0;
+            }
+
+            .section-title {
+                margin-bottom: 60px;
             }
             
             .gallery-grid {
@@ -383,18 +462,9 @@
                 margin-left: -15px;
             }
             
-            .prev {
-                left: 10px;
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-            }
-            
-            .next {
-                right: 10px;
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
+            /* Hide regular navigation on mobile - use fullscreen instead */
+            .prev, .next {
+                display: none;
             }
             
             .message {
@@ -409,7 +479,7 @@
             
             .section-title {
                 font-size: 2rem;
-                margin-bottom: 25px;
+                margin-bottom: 40px;
             }
             
             .heart-container {
@@ -430,6 +500,20 @@
             .slide-counter {
                 font-size: 14px;
                 margin-top: 15px;
+            }
+
+            footer {
+                padding: 50px 0 0 0;
+                margin: 0;
+                background-color: #333;
+            }
+
+            /* Fix iOS bottom spacing */
+            footer::after {
+                content: '';
+                display: block;
+                height: env(safe-area-inset-bottom, 20px);
+                background-color: #333;
             }
         }
         
@@ -470,6 +554,15 @@
                 -webkit-backface-visibility: hidden;
                 backface-visibility: hidden;
             }
+
+            body {
+                padding-bottom: 0;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            footer {
+                padding-bottom: env(safe-area-inset-bottom, 0);
+            }
         }
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -495,97 +588,97 @@
                     <button class="slide-nav next" onclick="changeSlide(1)">❯</button>
                     
                     <div class="slides active">
-                        <div class="slide-item">
+                        <div class="slide-item" onclick="openFullscreen(1)">
                             <img src="pics/1.jpg" alt="Memory 1">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item">
+                        <div class="slide-item" onclick="openFullscreen(2)">
                             <img src="pics/2.jpg" alt="Memory 2">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item">
+                        <div class="slide-item" onclick="openFullscreen(3)">
                             <img src="pics/3.jpg" alt="Memory 3">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item">
+                        <div class="slide-item" onclick="openFullscreen(4)">
                             <img src="pics/4.jpg" alt="Memory 4">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item">
+                        <div class="slide-item" onclick="openFullscreen(5)">
                             <img src="pics/5.jpg" alt="Memory 5">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item">
+                        <div class="slide-item" onclick="openFullscreen(6)">
                             <img src="pics/6.jpg" alt="Memory 6">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item">
+                        <div class="slide-item" onclick="openFullscreen(7)">
                             <img src="pics/7.jpg" alt="Memory 7">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item">
+                        <div class="slide-item" onclick="openFullscreen(8)">
                             <img src="pics/8.jpg" alt="Memory 8">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item">
+                        <div class="slide-item" onclick="openFullscreen(9)">
                             <img src="pics/9.jpg" alt="Memory 9">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item">
+                        <div class="slide-item" onclick="openFullscreen(10)">
                             <img src="pics/10.jpg" alt="Memory 10">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item">
+                        <div class="slide-item" onclick="openFullscreen(11)">
                             <img src="pics/11.jpg" alt="Memory 11">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item">
+                        <div class="slide-item" onclick="openFullscreen(12)">
                             <img src="pics/12.jpg" alt="Memory 12">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item">
+                        <div class="slide-item" onclick="openFullscreen(13)">
                             <img src="pics/13.jpg" alt="Memory 13">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item">
+                        <div class="slide-item" onclick="openFullscreen(14)">
                             <img src="pics/14.jpg" alt="Memory 14">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item">
+                        <div class="slide-item" onclick="openFullscreen(15)">
                             <img src="pics/15.jpg" alt="Memory 15">
                         </div>
                     </div>
                     
                     <div class="slides">
-                        <div class="slide-item">
+                        <div class="slide-item" onclick="openFullscreen(16)">
                             <img src="pics/16.jpg" alt="Memory 16">
                         </div>
                     </div>
@@ -596,6 +689,19 @@
             </div>
         </div>
     </section>
+
+    <!-- Fullscreen Modal for Mobile -->
+    <div class="fullscreen-modal" id="fullscreen-modal">
+        <div class="fullscreen-content">
+            <button class="fullscreen-close" onclick="closeFullscreen()">×</button>
+            <button class="fullscreen-nav fullscreen-prev" onclick="changeFullscreenSlide(-1)">❮</button>
+            <button class="fullscreen-nav fullscreen-next" onclick="changeFullscreenSlide(1)">❯</button>
+            <img class="fullscreen-image" id="fullscreen-image" alt="Fullscreen Memory">
+            <div class="fullscreen-counter">
+                <span id="fullscreen-current">1</span> / 16
+            </div>
+        </div>
+    </div>
 
     <!-- Message Section -->
     <section class="message" id="message">
@@ -614,13 +720,14 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>Made with <span class="desktop-heart">❤️</span> from John</p>
+            <p>Made with ❤️ from John</p>
         </div>
     </footer>
 
     <script>
         // Slideshow functionality
         let currentSlide = 1;
+        let fullscreenSlide = 1;
         const totalSlides = 16;
         
         function showSlide(n) {
@@ -639,20 +746,57 @@
             currentSlide += n;
             showSlide(currentSlide);
         }
+
+        // Fullscreen functionality
+        function openFullscreen(slideNumber) {
+            // Only open fullscreen on mobile devices
+            if (window.innerWidth <= 768) {
+                fullscreenSlide = slideNumber;
+                const modal = document.getElementById('fullscreen-modal');
+                const image = document.getElementById('fullscreen-image');
+                
+                image.src = `pics/${slideNumber}.jpg`;
+                document.getElementById('fullscreen-current').textContent = slideNumber;
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeFullscreen() {
+            const modal = document.getElementById('fullscreen-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeFullscreenSlide(n) {
+            fullscreenSlide += n;
+            
+            if (fullscreenSlide > totalSlides) fullscreenSlide = 1;
+            if (fullscreenSlide < 1) fullscreenSlide = totalSlides;
+            
+            const image = document.getElementById('fullscreen-image');
+            image.src = `pics/${fullscreenSlide}.jpg`;
+            document.getElementById('fullscreen-current').textContent = fullscreenSlide;
+        }
         
-        // Touch/swipe support for mobile
+        // Touch/swipe support for regular slideshow on desktop/tablet
         let startX = 0;
         let endX = 0;
         
         const slideshowContainer = document.querySelector('.slideshow-container');
         
         slideshowContainer.addEventListener('touchstart', function(e) {
-            startX = e.touches[0].clientX;
+            if (window.innerWidth > 768) {
+                startX = e.touches[0].clientX;
+            }
         });
         
         slideshowContainer.addEventListener('touchend', function(e) {
-            endX = e.changedTouches[0].clientX;
-            handleSwipe();
+            if (window.innerWidth > 768) {
+                endX = e.changedTouches[0].clientX;
+                handleSwipe();
+            }
         });
         
         function handleSwipe() {
@@ -661,12 +805,54 @@
             
             if (Math.abs(diff) > swipeThreshold) {
                 if (diff > 0) {
-                    changeSlide(1); // Swipe left - next slide
+                    changeSlide(1);
                 } else {
-                    changeSlide(-1); // Swipe right - previous slide
+                    changeSlide(-1);
                 }
             }
         }
+
+        // Touch/swipe support for fullscreen modal
+        let fullscreenStartX = 0;
+        let fullscreenEndX = 0;
+
+        const fullscreenModal = document.getElementById('fullscreen-modal');
+
+        fullscreenModal.addEventListener('touchstart', function(e) {
+            fullscreenStartX = e.touches[0].clientX;
+        });
+
+        fullscreenModal.addEventListener('touchend', function(e) {
+            fullscreenEndX = e.changedTouches[0].clientX;
+            handleFullscreenSwipe();
+        });
+
+        function handleFullscreenSwipe() {
+            const swipeThreshold = 50;
+            const diff = fullscreenStartX - fullscreenEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    changeFullscreenSlide(1);
+                } else {
+                    changeFullscreenSlide(-1);
+                }
+            }
+        }
+
+        // Close fullscreen when clicking outside image
+        fullscreenModal.addEventListener('click', function(e) {
+            if (e.target === fullscreenModal) {
+                closeFullscreen();
+            }
+        });
+
+        // Escape key to close fullscreen
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeFullscreen();
+            }
+        });
         
         // Create falling items with seamless animation
         const fallingContainer = document.getElementById('falling-items');
@@ -694,14 +880,12 @@
             });
         });
         
-        // Preload images for better performance on mobile
+        // Preload images for better performance
         function preloadImages() {
-            const images = document.querySelectorAll('.slide-item img');
-            images.forEach(img => {
-                const imageUrl = img.src;
+            for (let i = 1; i <= totalSlides; i++) {
                 const imageElement = new Image();
-                imageElement.src = imageUrl;
-            });
+                imageElement.src = `pics/${i}.jpg`;
+            }
         }
         
         // Initialize on page load
