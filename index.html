@@ -141,21 +141,12 @@
             transition: transform 0.3s ease;
         }
         
-        .slide-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-        
         .slide-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center;
             transition: transform 0.5s ease;
-        }
-        
-        .slide-item:hover img {
-            transform: scale(1.05);
         }
         
         .slide-nav {
@@ -281,6 +272,16 @@
                 border-radius: 15px;
             }
             
+            /* Desktop specific: Enable hover effects and ensure proper cropping */
+            .slide-item:hover {
+                transform: scale(1.02);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            }
+            
+            .slide-item:hover img {
+                transform: scale(1.05);
+            }
+            
             .slide-item img {
                 width: 100%;
                 height: 100%;
@@ -301,6 +302,16 @@
         @media (max-width: 1023px) and (min-width: 769px) {
             .slide-item {
                 height: 450px;
+            }
+            
+            /* Tablet: Remove hover effects */
+            .slide-item:hover {
+                transform: none;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .slide-item:hover img {
+                transform: none;
             }
             
             .slide-item img {
@@ -340,8 +351,19 @@
                 -webkit-overflow-scrolling: touch;
             }
 
+            /* Mobile specific: Move text up more */
             .hero-content {
-                transform: translateY(-120px);
+                transform: translateY(-180px);
+            }
+            
+            /* Mobile: Remove all hover effects */
+            .slide-item:hover {
+                transform: none;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .slide-item:hover img {
+                transform: none;
             }
             
             .hero h1 {
