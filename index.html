@@ -270,12 +270,12 @@
         /* Desktop Styles */
         @media (min-width: 1024px) {
             .gallery-grid {
-                max-width: 800px;
+                max-width: 1000px;
                 margin: 0 auto;
             }
             
             .slide-item {
-                height: 500px;
+                height: 600px;
                 border-radius: 15px;
             }
             
@@ -319,9 +319,13 @@
             }
 
             .hero {
-                padding: 40px 20px;
+                padding: 20px 20px;
                 min-height: 100vh;
                 -webkit-overflow-scrolling: touch;
+            }
+
+            .hero-content {
+                transform: translateY(-80px);
             }
             
             .hero h1 {
@@ -364,7 +368,7 @@
                 margin-left: -15px;
             }
             
-            /* Hide navigation buttons on mobile - swipe only */
+            /* Hide navigation buttons on mobile - tap only */
             .prev, .next {
                 display: none;
             }
@@ -609,7 +613,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>Made with ❤️ from John</p>
+            <p>Made with ❤️ by John</p>
         </div>
     </footer>
 
@@ -635,20 +639,49 @@
             showSlide(currentSlide);
         }
         
-        // Touch/swipe support for mobile
+        // Touch/tap support for mobile and desktop
         let startX = 0;
         let endX = 0;
         
         const slideshowContainer = document.querySelector('.slideshow-container');
         
-        slideshowContainer.addEventListener('touchstart', function(e) {
-            startX = e.touches[0].clientX;
-        });
-        
-        slideshowContainer.addEventListener('touchend', function(e) {
-            endX = e.changedTouches[0].clientX;
-            handleSwipe();
-        });
+        // For mobile: tap left/right halves to navigate
+        if (window.innerWidth <= 768) {
+            slideshowContainer.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const containerWidth = rect.width;
+                
+                if (clickX < containerWidth / 2) {
+                    changeSlide(-1); // Left half - previous slide
+                } else {
+                    changeSlide(1); // Right half - next slide
+                }
+            });
+        } else {
+            // For desktop: keep swipe functionality
+            slideshowContainer.addEventListener('touchstart', function(e) {
+                startX = e.touches[0].clientX;
+            });
+            
+            slideshowContainer.addEventListener('touchend', function(e) {
+                endX = e.changedTouches[0].clientX;
+                handleSwipe();
+            });
+            
+            // Also add click navigation for desktop
+            slideshowContainer.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const containerWidth = rect.width;
+                
+                if (clickX < containerWidth / 2) {
+                    changeSlide(-1); // Left half - previous slide
+                } else {
+                    changeSlide(1); // Right half - next slide
+                }
+            });
+        }
         
         function handleSwipe() {
             const swipeThreshold = 50;
