@@ -251,13 +251,15 @@
         /* Desktop Styles - 1024px and up */
         @media (min-width: 1024px) {
             .gallery-grid {
-                max-width: 1200px;
+                max-width: 900px;
                 margin: 0 auto;
             }
             
             .slide-item {
                 height: 800px;
                 border-radius: 15px;
+                max-width: 900px;
+                margin: 0 auto;
             }
             
             .slide-item img {
@@ -319,9 +321,9 @@
                 min-height: 100vh;
                 -webkit-overflow-scrolling: touch;
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
                 justify-content: center;
-                padding-top: 0;
+                padding-top: 35vh;
             }
 
             .hero-content {
