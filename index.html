@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Happy Anniversary!</title>
+    <title>Happy Valentine's Day!</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💕</text></svg>">
     <style>
         /* Global Styles */
@@ -13,7 +13,7 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        
+
         body {
             background-color: #f9f7f7;
             color: #333;
@@ -22,7 +22,7 @@
             -webkit-text-size-adjust: 100%;
             -webkit-font-smoothing: antialiased;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -38,7 +38,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .hero-content {
             text-align: center;
             z-index: 1;
@@ -46,20 +46,21 @@
             opacity: 0;
             transform: translateY(50px);
         }
-        
+
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 20px;
             color: #BCA4E3;
             text-shadow: 0 2px 10px rgba(188, 164, 227, 0.2);
         }
-        
+
         .hero p {
             font-size: 1.5rem;
             margin-bottom: 30px;
             color: #555;
+            line-height: 1.6;
         }
-        
+
         /* Falling items animation */
         .falling-container {
             position: absolute;
@@ -69,7 +70,7 @@
             height: 100%;
             pointer-events: none;
         }
-        
+
         .falling-item {
             position: absolute;
             width: 20px;
@@ -78,7 +79,7 @@
             opacity: 0.8;
             animation: item-fall 8s linear infinite;
         }
-        
+
         .strawberry { color: #ff4444; }
         .sushi { color: #ff7f50; }
         .boba { color: #8b4513; }
@@ -94,7 +95,7 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .bouncing-image {
             position: absolute;
             width: 150px;
@@ -104,29 +105,29 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: filter 0.1s ease;
         }
-        
+
         .bouncing-image.corner-hit {
             filter: hue-rotate(60deg) saturate(150%) brightness(120%);
         }
-        
+
         /* Corner hit effect */
         @keyframes corner-flash {
-            0% { 
+            0% {
                 filter: hue-rotate(0deg) saturate(150%) brightness(150%);
                 box-shadow: 0 4px 25px rgba(188, 164, 227, 0.8);
                 transform: scale(1.1);
             }
-            100% { 
+            100% {
                 filter: hue-rotate(360deg) saturate(100%) brightness(100%);
                 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
                 transform: scale(1);
             }
         }
-        
+
         .corner-hit {
             animation: corner-flash 0.5s ease-out;
         }
-        
+
         /* Footer */
         footer {
             padding: 50px 0;
@@ -135,29 +136,29 @@
             text-align: center;
             min-height: 120px;
         }
-        
+
         footer p {
             font-size: 0.9rem;
             opacity: 0.8;
         }
-        
+
         /* Animations */
         @keyframes fadeInUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(50px); 
+            from {
+                opacity: 0;
+                transform: translateY(50px);
             }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-        
+
         @keyframes item-fall {
             0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
             100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
-        
+
         /* Mobile and iOS Styles */
         @media (max-width: 768px) {
             body {
@@ -174,7 +175,7 @@
                 min-height: 100vh;
                 min-height: -webkit-fill-available;
                 min-height: 100dvh;
-                
+
                 padding: 20px;
                 display: flex;
                 align-items: center;
@@ -190,26 +191,26 @@
                 position: relative;
                 z-index: 1;
             }
-            
+
             .hero h1 {
                 font-size: 2.5rem;
                 line-height: 1.2;
             }
-            
+
             .hero p {
                 font-size: 1.1rem;
                 margin-bottom: 20px;
             }
-            
+
             .container {
                 padding: 0 15px;
             }
-            
+
             .bouncing-image {
                 width: 120px;
                 max-width: 150px;
             }
-            
+
             .falling-item {
                 font-size: 16px;
                 width: 16px;
@@ -229,7 +230,7 @@
                 background-color: #333;
             }
         }
-        
+
         /* Small Mobile Styles */
         @media (max-width: 480px) {
             .hero {
@@ -239,21 +240,21 @@
                 min-height: 100dvh;
                 padding: 15px;
             }
-            
+
             .hero h1 {
                 font-size: 2rem;
             }
-            
+
             .hero p {
                 font-size: 1rem;
             }
-            
+
             .bouncing-image {
                 width: 100px;
                 max-width: 120px;
             }
         }
-        
+
         /* iOS Safari specific optimizations */
         @supports (-webkit-appearance: none) and (stroke-color: transparent) {
             .hero {
@@ -261,7 +262,7 @@
                 min-height: 100vh;
                 min-height: -webkit-fill-available;
                 min-height: 100dvh;
-                
+
                 -webkit-transform: translateZ(0);
                 transform: translateZ(0);
                 -webkit-backface-visibility: hidden;
@@ -269,7 +270,7 @@
                 position: relative;
                 overflow: hidden;
             }
-            
+
             .hero-content {
                 position: relative;
                 z-index: 1;
@@ -277,7 +278,7 @@
                 max-width: none;
                 padding: 0;
                 margin: 0;
-                
+
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -294,7 +295,7 @@
                 padding-bottom: env(safe-area-inset-bottom, 0);
             }
         }
-        
+
         /* Additional iOS 15+ Safari fixes */
         @media screen and (max-width: 768px) {
             @supports (height: 100dvh) {
@@ -302,18 +303,18 @@
                     height: 100dvh;
                     min-height: 100dvh;
                 }
-                
+
                 .bouncing-section {
                     height: 100dvh;
                 }
             }
-            
+
             @supports (height: 100svh) {
                 .hero {
                     height: 100svh;
                     min-height: 100svh;
                 }
-                
+
                 .bouncing-section {
                     height: 100svh;
                 }
@@ -328,8 +329,8 @@
     <section class="hero" id="home">
         <div class="falling-container" id="falling-items"></div>
         <div class="hero-content container">
-            <h1>Happy Anniversary!</h1>
-            <p>To my amazing girlfriend</p>
+            <h1>Happy Valentine's Day!</h1>
+            <p>To my favourite girl. You make me so happy and so grateful in you in my life, you make it that much better everyday. Next year I will get to see your reaction for getting flower's :^)</p>
         </div>
     </section>
 
@@ -350,7 +351,7 @@
         const fallingContainer = document.getElementById('falling-items');
         const items = ['🍓', '🍣', '🧋', '🌸'];
         const itemClasses = ['strawberry', 'sushi', 'boba', 'flower'];
-        
+
         for (let i = 0; i < 50; i++) {
             const item = document.createElement('div');
             const randomIndex = Math.floor(Math.random() * items.length);
@@ -372,47 +373,47 @@
                 this.dx = 2 + Math.random() * 3; // Random speed between 2-5
                 this.dy = 2 + Math.random() * 3;
                 this.cornerHits = 0;
-                
+
                 this.image.style.left = this.x + 'px';
                 this.image.style.top = this.y + 'px';
-                
+
                 this.animate();
             }
-            
+
             animate() {
                 this.x += this.dx;
                 this.y += this.dy;
-                
+
                 const imageRect = this.image.getBoundingClientRect();
                 const containerRect = this.container.getBoundingClientRect();
                 const imageWidth = imageRect.width;
                 const imageHeight = imageRect.height;
                 const containerWidth = containerRect.width;
                 const containerHeight = containerRect.height;
-                
+
                 let hitCorner = false;
-                
+
                 // Check for collisions and bounce
                 if (this.x + imageWidth >= containerWidth || this.x <= 0) {
                     this.dx = -this.dx;
                     this.x = Math.max(0, Math.min(this.x, containerWidth - imageWidth));
-                    
+
                     // Check if it's a corner hit
                     if ((this.y <= 5 || this.y + imageHeight >= containerHeight - 5)) {
                         hitCorner = true;
                     }
                 }
-                
+
                 if (this.y + imageHeight >= containerHeight || this.y <= 0) {
                     this.dy = -this.dy;
                     this.y = Math.max(0, Math.min(this.y, containerHeight - imageHeight));
-                    
+
                     // Check if it's a corner hit
                     if ((this.x <= 5 || this.x + imageWidth >= containerWidth - 5)) {
                         hitCorner = true;
                     }
                 }
-                
+
                 // Corner hit effect
                 if (hitCorner) {
                     this.cornerHits++;
@@ -420,28 +421,28 @@
                     setTimeout(() => {
                         this.image.classList.remove('corner-hit');
                     }, 500);
-                    
+
                     // Change speed slightly on corner hit for variety
                     this.dx += (Math.random() - 0.5) * 0.5;
                     this.dy += (Math.random() - 0.5) * 0.5;
-                    
+
                     // Keep speed within reasonable bounds
                     this.dx = Math.max(1.5, Math.min(Math.abs(this.dx), 4)) * Math.sign(this.dx);
                     this.dy = Math.max(1.5, Math.min(Math.abs(this.dy), 4)) * Math.sign(this.dy);
                 }
-                
+
                 // Update position
                 this.image.style.left = this.x + 'px';
                 this.image.style.top = this.y + 'px';
-                
+
                 // Continue animation
                 requestAnimationFrame(() => this.animate());
             }
         }
-        
+
         // Initialize bouncing animation when page loads
         let bouncer;
-        
+
         function initializeBouncer() {
             const bouncingImage = document.getElementById('bouncingImage');
             if (bouncingImage && bouncingImage.complete) {
@@ -452,19 +453,19 @@
                 };
             }
         }
-        
+
         // Handle window resize
         function handleResize() {
             if (bouncer) {
                 const containerRect = bouncer.container.getBoundingClientRect();
                 const imageRect = bouncer.image.getBoundingClientRect();
-                
+
                 // Keep image within bounds after resize
                 bouncer.x = Math.max(0, Math.min(bouncer.x, containerRect.width - imageRect.width));
                 bouncer.y = Math.max(0, Math.min(bouncer.y, containerRect.height - imageRect.height));
             }
         }
-        
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -474,7 +475,7 @@
                 });
             });
         });
-        
+
         // iOS Safari viewport height fix
         function setViewportHeight() {
             if (window.innerWidth <= 768) {
@@ -482,19 +483,19 @@
                 document.documentElement.style.setProperty('--vh', `${vh}px`);
             }
         }
-        
+
         // Initialize on page load
         window.addEventListener('load', function() {
             initializeBouncer();
             setViewportHeight();
         });
-        
+
         // Handle resize and orientation change
         window.addEventListener('resize', function() {
             handleResize();
             setViewportHeight();
         });
-        
+
         window.addEventListener('orientationchange', function() {
             setTimeout(() => {
                 handleResize();
