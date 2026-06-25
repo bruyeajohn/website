@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Happy Valentine's Day!</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💕</text></svg>">
+    <title>Happy Birthday!</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍣</text></svg>">
     <style>
         /* Global Styles */
         * {
@@ -13,7 +13,7 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-
+        
         body {
             background-color: #f9f7f7;
             color: #333;
@@ -22,7 +22,7 @@
             -webkit-text-size-adjust: 100%;
             -webkit-font-smoothing: antialiased;
         }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -38,7 +38,7 @@
             position: relative;
             overflow: hidden;
         }
-
+        
         .hero-content {
             text-align: center;
             z-index: 1;
@@ -46,21 +46,20 @@
             opacity: 0;
             transform: translateY(50px);
         }
-
+        
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 20px;
             color: #BCA4E3;
             text-shadow: 0 2px 10px rgba(188, 164, 227, 0.2);
         }
-
+        
         .hero p {
             font-size: 1.5rem;
             margin-bottom: 30px;
             color: #555;
-            line-height: 1.6;
         }
-
+        
         /* Falling items animation */
         .falling-container {
             position: absolute;
@@ -70,7 +69,7 @@
             height: 100%;
             pointer-events: none;
         }
-
+        
         .falling-item {
             position: absolute;
             width: 20px;
@@ -79,55 +78,145 @@
             opacity: 0.8;
             animation: item-fall 8s linear infinite;
         }
-
+        
         .strawberry { color: #ff4444; }
         .sushi { color: #ff7f50; }
         .boba { color: #8b4513; }
         .flower { color: #ff69b4; }
-
-        /* Bouncing Animation Section */
-        .bouncing-section {
-            height: 100vh;
-            background-color: #f9f7f7;
+        
+        /* Gallery Section */
+        .gallery {
+            padding: 100px 0 120px 0;
+            background-color: #fff;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 80px;
+            color: #333;
             position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: #BCA4E3;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .gallery-grid {
+            position: relative;
+            width: 100%;
+            max-width: 100vw;
+            margin: 0 auto;
+        }
+        
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+        }
+        
+        .slides {
+            display: none;
+            width: 100%;
+        }
+        
+        .slides.active {
+            display: block;
+        }
+        
+        .slide-item {
+            width: 100%;
+            height: 60vh;
+            min-height: 400px;
+            border-radius: 0;
             overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .slide-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        
+        .slide-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
-
-        .bouncing-image {
-            position: absolute;
-            width: 150px;
+        
+        .prev {
+            left: 20px;
+        }
+        
+        .next {
+            right: 20px;
+        }
+        
+        .slide-counter {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        /* Message Section */
+        .message {
+            padding: 100px 0;
+            background-color: #f9f7f7;
+            text-align: center;
+        }
+        
+        .message-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .message p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        .heart-container {
+            margin: 50px 0;
+            position: relative;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .heart-image {
+            width: 110px;
             height: auto;
-            max-width: 200px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: filter 0.1s ease;
+            max-width: 100%;
         }
-
-        .bouncing-image.corner-hit {
-            filter: hue-rotate(60deg) saturate(150%) brightness(120%);
-        }
-
-        /* Corner hit effect */
-        @keyframes corner-flash {
-            0% {
-                filter: hue-rotate(0deg) saturate(150%) brightness(150%);
-                box-shadow: 0 4px 25px rgba(188, 164, 227, 0.8);
-                transform: scale(1.1);
-            }
-            100% {
-                filter: hue-rotate(360deg) saturate(100%) brightness(100%);
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-                transform: scale(1);
-            }
-        }
-
-        .corner-hit {
-            animation: corner-flash 0.5s ease-out;
-        }
-
+        
         /* Footer */
         footer {
             padding: 50px 0;
@@ -136,29 +225,86 @@
             text-align: center;
             min-height: 120px;
         }
-
+        
         footer p {
             font-size: 0.9rem;
             opacity: 0.8;
         }
-
+        
         /* Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
+            from { 
+                opacity: 0; 
+                transform: translateY(50px); 
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
             }
         }
-
+        
         @keyframes item-fall {
             0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
             100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
+        
+        /* Desktop Styles - 1024px and up */
+        @media (min-width: 1024px) {
+            .gallery-grid {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            
+            .slide-item {
+                height: 800px;
+                border-radius: 15px;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            
+            .slide-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                object-position: center;
+                background-color: #f5f5f5;
+            }
+            
+            .prev {
+                left: -60px;
+            }
+            
+            .next {
+                right: -60px;
+            }
+        }
+        
+        /* Tablet Styles */
+        @media (max-width: 1023px) and (min-width: 769px) {
+            .slide-item {
+                height: 450px;
+            }
+            
+            .slide-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+            
+            .prev {
+                left: 15px;
+            }
+            
+            .next {
+                right: 15px;
+            }
 
+            .section-title {
+                margin-bottom: 60px;
+            }
+        }
+        
         /* Mobile and iOS Styles */
         @media (max-width: 768px) {
             body {
@@ -171,16 +317,19 @@
             }
 
             .hero {
+                /* Use multiple fallbacks for iOS Safari viewport issues */
                 height: 100vh;
                 min-height: 100vh;
                 min-height: -webkit-fill-available;
                 min-height: 100dvh;
-
+                
                 padding: 20px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 -webkit-overflow-scrolling: touch;
+                
+                /* Ensure proper centering on iOS */
                 position: relative;
             }
 
@@ -191,30 +340,80 @@
                 position: relative;
                 z-index: 1;
             }
-
+            
             .hero h1 {
                 font-size: 2.5rem;
                 line-height: 1.2;
             }
-
+            
             .hero p {
                 font-size: 1.1rem;
                 margin-bottom: 20px;
             }
-
+            
             .container {
                 padding: 0 15px;
             }
-
-            .bouncing-image {
-                width: 120px;
-                max-width: 150px;
+            
+            .gallery {
+                padding: 80px 0 100px 0;
             }
 
+            .section-title {
+                margin-bottom: 60px;
+            }
+            
+            .gallery-grid {
+                margin: 0;
+                padding: 0;
+            }
+            
+            .slide-item {
+                height: 70vh;
+                min-height: 350px;
+                border-radius: 0;
+                width: 100vw;
+                margin-left: -15px;
+            }
+            
+            /* Hide navigation buttons on mobile - tap only */
+            .prev, .next {
+                display: none;
+            }
+            
+            .message {
+                padding: 60px 0;
+            }
+            
+            .message p {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 20px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            
+            .heart-container {
+                height: 150px;
+            }
+            
+            .heart-image {
+                width: 110px;
+                height: auto;
+            }
+            
             .falling-item {
                 font-size: 16px;
                 width: 16px;
                 height: 16px;
+            }
+            
+            .slide-counter {
+                font-size: 14px;
+                margin-top: 15px;
             }
 
             footer {
@@ -223,6 +422,7 @@
                 background-color: #333;
             }
 
+            /* Fix iOS bottom spacing */
             footer::after {
                 content: '';
                 display: block;
@@ -230,60 +430,87 @@
                 background-color: #333;
             }
         }
-
+        
         /* Small Mobile Styles */
         @media (max-width: 480px) {
             .hero {
+                /* Additional iOS fixes for smaller screens */
                 height: 100vh;
                 min-height: 100vh;
                 min-height: -webkit-fill-available;
                 min-height: 100dvh;
                 padding: 15px;
             }
-
+            
             .hero h1 {
                 font-size: 2rem;
             }
-
+            
             .hero p {
                 font-size: 1rem;
             }
-
-            .bouncing-image {
-                width: 100px;
-                max-width: 120px;
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .message p {
+                font-size: 0.95rem;
+            }
+            
+            .heart-image {
+                width: 110px;
+                height: auto;
+            }
+            
+            .slide-item {
+                height: 65vh;
+                min-height: 300px;
             }
         }
-
+        
         /* iOS Safari specific optimizations */
         @supports (-webkit-appearance: none) and (stroke-color: transparent) {
             .hero {
+                /* iOS Safari specific height fixes */
                 height: 100vh;
                 min-height: 100vh;
                 min-height: -webkit-fill-available;
                 min-height: 100dvh;
-
+                
+                /* Force hardware acceleration for smoother animations */
                 -webkit-transform: translateZ(0);
                 transform: translateZ(0);
                 -webkit-backface-visibility: hidden;
                 backface-visibility: hidden;
+                
+                /* Ensure proper positioning */
                 position: relative;
                 overflow: hidden;
             }
-
+            
             .hero-content {
+                /* Center content properly on iOS */
                 position: relative;
                 z-index: 1;
                 width: 100%;
                 max-width: none;
                 padding: 0;
                 margin: 0;
-
+                
+                /* Additional centering for iOS */
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 text-align: center;
+            }
+
+            .slide-item {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
             }
 
             body {
@@ -295,7 +522,7 @@
                 padding-bottom: env(safe-area-inset-bottom, 0);
             }
         }
-
+        
         /* Additional iOS 15+ Safari fixes */
         @media screen and (max-width: 768px) {
             @supports (height: 100dvh) {
@@ -303,20 +530,12 @@
                     height: 100dvh;
                     min-height: 100dvh;
                 }
-
-                .bouncing-section {
-                    height: 100dvh;
-                }
             }
-
+            
             @supports (height: 100svh) {
                 .hero {
                     height: 100svh;
                     min-height: 100svh;
-                }
-
-                .bouncing-section {
-                    height: 100svh;
                 }
             }
         }
@@ -329,14 +548,135 @@
     <section class="hero" id="home">
         <div class="falling-container" id="falling-items"></div>
         <div class="hero-content container">
-            <h1>Happy Valentine's Day!</h1>
-            <p>To my favourite girl. You make me so happy and i'm so grateful to have you in my life, you make it that much better everyday. Next year I will get to see your reaction for getting flower's :^)</p>
+            <h1>Happy Birthday!</h1>
+            <p>To my amazing girlfriend</p>
         </div>
     </section>
 
-    <!-- Bouncing Animation Section -->
-    <section class="bouncing-section" id="bouncing">
-        <img src="pics/twincross.jpg" alt="Our Special Memory" class="bouncing-image" id="bouncingImage">
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Our Memories</h2>
+            <div class="gallery-grid">
+                <div class="slideshow-container">
+                    <button class="slide-nav prev" onclick="changeSlide(-1)">❮</button>
+                    <button class="slide-nav next" onclick="changeSlide(1)">❯</button>
+                    
+                    <div class="slides active">
+                        <div class="slide-item">
+                            <img src="pics/1.jpg" alt="Memory 1">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="pics/2.jpg" alt="Memory 2">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="pics/3.jpg" alt="Memory 3">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="pics/4.jpg" alt="Memory 4">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="pics/5.jpg" alt="Memory 5">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="pics/6.jpg" alt="Memory 6">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="pics/7.jpg" alt="Memory 7">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="pics/8.jpg" alt="Memory 8">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="pics/9.jpg" alt="Memory 9">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="pics/10.jpg" alt="Memory 10">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="pics/11.jpg" alt="Memory 11">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="pics/12.jpg" alt="Memory 12">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="pics/13.jpg" alt="Memory 13">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="pics/14.jpg" alt="Memory 14">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="pics/15.jpg" alt="Memory 15">
+                        </div>
+                    </div>
+                    
+                    <div class="slides">
+                        <div class="slide-item">
+                            <img src="pics/16.jpg" alt="Memory 16">
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-counter">
+                    <span id="current-slide">1</span> / 16
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Message Section -->
+    <section class="message" id="message">
+        <div class="container">
+            <div class="message-content">
+                <p>I'm so glad we are together for your golden birthday! I just wanted to tell you how much you mean to me, and that I love you. I'm sure you'll have a really cute smile while you are reading this. :P</p>
+                <p>Thank you for being the caring, passionate, obsessive, perspective, reliable person that I fell in love with, and continue to fall more in love with each day. I really cherish the time we have together in person and online, and can't wait to make more memories with you.</p>
+                <div class="heart-container">
+                    <img src="pics/twincross.jpg" alt="Special Memory" class="heart-image">
+                </div>
+                <p>I love you. Happy Birthday :^)</p>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -347,11 +687,88 @@
     </footer>
 
     <script>
+        // Slideshow functionality - completely rewritten
+        let currentSlide = 0; // Start from 0 for proper array indexing
+        const slides = document.querySelectorAll('.slides');
+        const totalSlides = slides.length;
+        
+        function showSlide(slideIndex) {
+            // Remove active class from all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            // Handle wraparound
+            if (slideIndex >= totalSlides) {
+                currentSlide = 0;
+            } else if (slideIndex < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = slideIndex;
+            }
+            
+            // Show current slide
+            slides[currentSlide].classList.add('active');
+            
+            // Update counter (display as 1-based)
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+        
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+        
+        // Initialize slideshow
+        showSlide(0);
+        
+        // Touch/tap support for mobile only
+        let startX = 0;
+        let endX = 0;
+        
+        const slideshowContainer = document.querySelector('.slideshow-container');
+        
+        // Mobile-only navigation (tap and swipe)
+        if (window.innerWidth <= 768) {
+            // Tap navigation for mobile
+            slideshowContainer.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const containerWidth = rect.width;
+                
+                if (clickX < containerWidth / 2) {
+                    changeSlide(-1); // Left half - previous slide
+                } else {
+                    changeSlide(1); // Right half - next slide
+                }
+            });
+            
+            // Swipe navigation for mobile
+            slideshowContainer.addEventListener('touchstart', function(e) {
+                startX = e.touches[0].clientX;
+            });
+            
+            slideshowContainer.addEventListener('touchend', function(e) {
+                endX = e.changedTouches[0].clientX;
+                handleSwipe();
+            });
+        }
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    changeSlide(1); // Swipe left - next slide
+                } else {
+                    changeSlide(-1); // Swipe right - previous slide
+                }
+            }
+        }
+        
         // Create falling items with seamless animation
         const fallingContainer = document.getElementById('falling-items');
         const items = ['🍓', '🍣', '🧋', '🌸'];
         const itemClasses = ['strawberry', 'sushi', 'boba', 'flower'];
-
+        
         for (let i = 0; i < 50; i++) {
             const item = document.createElement('div');
             const randomIndex = Math.floor(Math.random() * items.length);
@@ -362,110 +779,7 @@
             item.style.animationDuration = Math.random() * 4 + 6 + 's';
             fallingContainer.appendChild(item);
         }
-
-        // DVD Bouncing Animation
-        class DVDBouncer {
-            constructor(imageElement) {
-                this.image = imageElement;
-                this.container = imageElement.parentElement;
-                this.x = Math.random() * (this.container.clientWidth - 150);
-                this.y = Math.random() * (this.container.clientHeight - 150);
-                this.dx = 2 + Math.random() * 3; // Random speed between 2-5
-                this.dy = 2 + Math.random() * 3;
-                this.cornerHits = 0;
-
-                this.image.style.left = this.x + 'px';
-                this.image.style.top = this.y + 'px';
-
-                this.animate();
-            }
-
-            animate() {
-                this.x += this.dx;
-                this.y += this.dy;
-
-                const imageRect = this.image.getBoundingClientRect();
-                const containerRect = this.container.getBoundingClientRect();
-                const imageWidth = imageRect.width;
-                const imageHeight = imageRect.height;
-                const containerWidth = containerRect.width;
-                const containerHeight = containerRect.height;
-
-                let hitCorner = false;
-
-                // Check for collisions and bounce
-                if (this.x + imageWidth >= containerWidth || this.x <= 0) {
-                    this.dx = -this.dx;
-                    this.x = Math.max(0, Math.min(this.x, containerWidth - imageWidth));
-
-                    // Check if it's a corner hit
-                    if ((this.y <= 5 || this.y + imageHeight >= containerHeight - 5)) {
-                        hitCorner = true;
-                    }
-                }
-
-                if (this.y + imageHeight >= containerHeight || this.y <= 0) {
-                    this.dy = -this.dy;
-                    this.y = Math.max(0, Math.min(this.y, containerHeight - imageHeight));
-
-                    // Check if it's a corner hit
-                    if ((this.x <= 5 || this.x + imageWidth >= containerWidth - 5)) {
-                        hitCorner = true;
-                    }
-                }
-
-                // Corner hit effect
-                if (hitCorner) {
-                    this.cornerHits++;
-                    this.image.classList.add('corner-hit');
-                    setTimeout(() => {
-                        this.image.classList.remove('corner-hit');
-                    }, 500);
-
-                    // Change speed slightly on corner hit for variety
-                    this.dx += (Math.random() - 0.5) * 0.5;
-                    this.dy += (Math.random() - 0.5) * 0.5;
-
-                    // Keep speed within reasonable bounds
-                    this.dx = Math.max(1.5, Math.min(Math.abs(this.dx), 4)) * Math.sign(this.dx);
-                    this.dy = Math.max(1.5, Math.min(Math.abs(this.dy), 4)) * Math.sign(this.dy);
-                }
-
-                // Update position
-                this.image.style.left = this.x + 'px';
-                this.image.style.top = this.y + 'px';
-
-                // Continue animation
-                requestAnimationFrame(() => this.animate());
-            }
-        }
-
-        // Initialize bouncing animation when page loads
-        let bouncer;
-
-        function initializeBouncer() {
-            const bouncingImage = document.getElementById('bouncingImage');
-            if (bouncingImage && bouncingImage.complete) {
-                bouncer = new DVDBouncer(bouncingImage);
-            } else if (bouncingImage) {
-                bouncingImage.onload = () => {
-                    bouncer = new DVDBouncer(bouncingImage);
-                };
-            }
-        }
-
-        // Handle window resize
-        function handleResize() {
-            if (bouncer) {
-                const containerRect = bouncer.container.getBoundingClientRect();
-                const imageRect = bouncer.image.getBoundingClientRect();
-
-                // Keep image within bounds after resize
-                bouncer.x = Math.max(0, Math.min(bouncer.x, containerRect.width - imageRect.width));
-                bouncer.y = Math.max(0, Math.min(bouncer.y, containerRect.height - imageRect.height));
-            }
-        }
-
+        
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -475,7 +789,15 @@
                 });
             });
         });
-
+        
+        // Preload images for better performance
+        function preloadImages() {
+            for (let i = 1; i <= totalSlides; i++) {
+                const imageElement = new Image();
+                imageElement.src = `pics/${i}.jpg`;
+            }
+        }
+        
         // iOS Safari viewport height fix
         function setViewportHeight() {
             if (window.innerWidth <= 768) {
@@ -483,24 +805,17 @@
                 document.documentElement.style.setProperty('--vh', `${vh}px`);
             }
         }
-
+        
         // Initialize on page load
         window.addEventListener('load', function() {
-            initializeBouncer();
+            preloadImages();
             setViewportHeight();
         });
-
-        // Handle resize and orientation change
-        window.addEventListener('resize', function() {
-            handleResize();
-            setViewportHeight();
-        });
-
+        
+        // Recalculate on resize/orientation change
+        window.addEventListener('resize', setViewportHeight);
         window.addEventListener('orientationchange', function() {
-            setTimeout(() => {
-                handleResize();
-                setViewportHeight();
-            }, 100);
+            setTimeout(setViewportHeight, 100);
         });
     </script>
 </body>
